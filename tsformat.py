@@ -1,4 +1,4 @@
-import time, sys, os
+import time, sys
 
 def formatTimeStamp(ts):
     lt = time.localtime(ts)
