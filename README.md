@@ -1,4 +1,4 @@
-custom_commands
+pyCmd
 ===============
 
 This built some commands for Windows using the same name as Linux.
