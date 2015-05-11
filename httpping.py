@@ -1,23 +1,29 @@
-#!/usr/bin/python3
-#coding=utf-8
+import sys, urllib.request
 
-import sys
-import urllib.request
+def urlPing():
+    url = ""
+    if len(sys.argv) < 2:
+        url = "http://www.baidu.com"
+    else:
+        url = sys.argv[1]
 
-if len(sys.argv) < 2:
-    print("less argument...")
-    exit()
+    if url[:7] != "http://" and url[:8] != "https://":
+        url = "http://" + url
+    try:
+        response = urllib.request.urlopen(url)
+        if response.status == 200:
+            print("success")
+        else:
+            print("failed, status=%d"%response.status)
+    except TimeoutError as e:
+        print("timeout")
 
-url = sys.argv[1]
-if url.find("://") == -1:
-    url = "http://" + url
-print("connect to %s"%url);
-try:
-    response = urllib.request.urlopen(url)
-    html = response.read()
-    print(html)
-except Exception as e:
-    print("cannot connect to %s"%url)
-    exit()
+if __name__ == '__main__':
+    urlPing()
+
+
     
+
+
+
 
